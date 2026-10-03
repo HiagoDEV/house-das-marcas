@@ -6,9 +6,9 @@ const INSTAGRAM_URL = "https://www.instagram.com/housedasmarcas";
 export function SiteFooter() {
   return (
     <footer className="border-t border-surface-border bg-surface mt-16">
-      <div className="max-w-6xl mx-auto px-4 py-12 grid gap-8 md:grid-cols-[auto_1fr_1fr_1fr] text-sm">
-        <div className="max-w-[220px]">
-          <div className="flex items-center gap-2.5">
+      <div className="max-w-6xl mx-auto px-4 py-12 grid gap-8 md:grid-cols-[auto_1fr_1fr_1fr] text-sm text-center md:text-left">
+        <div className="max-w-[220px] mx-auto md:mx-0">
+          <div className="flex items-center justify-center md:justify-start gap-2.5">
             <Image src="/brand/logo.jpg" alt="House das Marcas" width={36} height={36} className="rounded-full" />
             <span className="font-display text-sm tracking-wide">HOUSE DAS MARCAS</span>
           </div>
@@ -34,7 +34,7 @@ export function SiteFooter() {
         </div>
         <div>
           <p className="font-medium mb-2">Fale conosco</p>
-          <div className="flex flex-col gap-1.5 text-muted">
+          <div className="flex flex-col items-center md:items-start gap-1.5 text-muted">
             <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="hover:text-gold transition">
               WhatsApp
             </a>

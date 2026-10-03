@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# House das Marcas — loja online
 
-## Getting Started
+Site da loja (catalogo publico) + painel do lojista, construidos com Next.js 16, Prisma e PostgreSQL.
 
-First, run the development server:
+## Rodando localmente
+
+Pre-requisitos: Node 20+, PostgreSQL rodando localmente (ja configurado neste projeto).
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Acesse:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Loja: http://localhost:3000
+- Painel do lojista: http://localhost:3000/admin/login
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Login padrao do painel (criado pelo seed):
 
-## Learn More
+- E-mail: `admin@housedasmarcas.com.br`
+- Senha: `admin123`
 
-To learn more about Next.js, take a look at the following resources:
+**Troque essa senha antes de colocar o site no ar.**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Banco de dados
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+O schema fica em `prisma/schema.prisma`. Depois de alterar o schema:
 
-## Deploy on Vercel
+```bash
+npx prisma migrate dev --name descricao_da_mudanca
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Para repovoar os dados de exemplo (categorias, produtos e o admin):
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run db:seed
+```
+
+Para visualizar/editar os dados direto no banco:
+
+```bash
+npm run db:studio
+```
+
+## O que ja esta pronto
+
+- Painel do lojista (`/admin`): login, dashboard, cadastro/edicao/exclusao de produtos (com upload de fotos), categorias e visualizacao de pedidos.
+- Loja publica (`/`, `/produtos`): vitrine com os produtos cadastrados no painel, filtro por categoria e pagina de detalhe.
+- Fotos de produto sao salvas em `public/uploads/products` (arquivos locais, sem dependencia externa).
+
+## O que falta (proximos passos)
+
+- **Checkout e pagamento**: hoje a loja so exibe os produtos. Falta a pagina de carrinho/checkout e a integracao com o Mercado Pago (ja ha um `.env` preparado com as variaveis `MERCADOPAGO_ACCESS_TOKEN` e `NEXT_PUBLIC_MERCADOPAGO_PUBLIC_KEY` para quando formos fazer essa parte).
+- Cadastro de fotos do Instagram da loja (os produtos de exemplo sao fake, preparados so para demonstrar o painel).
+
+## Variaveis de ambiente
+
+Veja `.env.example`. O arquivo `.env` real (com senha do banco e chaves) nao vai para o git.
